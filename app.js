@@ -1,12 +1,34 @@
 import express from 'express';
+import  dotenv from 'dotenv';
+import { pageRouter } from './Routers/pageRouters.js';
+import mongoose from 'mongoose';
 
 const app = express()
-const port = 3000
+dotenv.config()
+const PORT = process.env.PORT
+const URI = process.env.URI
+// Connect to the DB
 
-app.get('/',(req,res)=>{
-    res.send("ok server")
-})
+// ejs template engine
+app.set("view engine",'ejs')
 
-app.listen(port,()=>{
-    console.log(`Server up is on :${port}`)
+// static files middleware
+app.use(express.static('public'))
+app.use(express.json())
+
+// get
+app.use('/',pageRouter)
+
+app.use('/about',pageRouter)
+
+app.use('/photos',pageRouter)
+// post
+// app.use('/photo',pageRouter)
+
+app.listen(PORT,()=>{
+    console.log(`Server up is on : ${PORT}`)
+
+    mongoose.connect(URI).then(()=>{
+        console.log("Connected to the mongodb successfully")
+    })
 })
