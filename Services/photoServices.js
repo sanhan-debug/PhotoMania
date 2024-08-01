@@ -3,9 +3,9 @@ import { Photo } from "../Models/photoModel.js";
 export let photo;
 const createPhoto = async (req, res) => {
   try {
-     photo = await Photo.create(req.body);
+    photo = await Photo.create(req.body);
     res.status(201).json({
-      message:"data has been added!",
+      message: "data has been added!",
       succeded: true,
       photo,
     });
@@ -17,17 +17,12 @@ const createPhoto = async (req, res) => {
   }
 };
 
-const getAllPhoto = async (req, res) => {
+const getAllPhoto =  (req, res) => {
   try {
-    const photos = await Photo.find({});
-    res.status(200).render("photos",{
-      photos
-    })
-
-    .json({
-      succeded: true,
-      photos,
-    });
+    const photos =  Photo.find({});
+    res
+      .status(200)
+      .render("photos", {photos})
   } catch (error) {
     res.status(500).json({
       succeded: false,
@@ -37,4 +32,3 @@ const getAllPhoto = async (req, res) => {
 };
 
 export { createPhoto, getAllPhoto };
-

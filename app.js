@@ -21,9 +21,7 @@ app.use('/',pageRouter)
 
 app.use('/about',pageRouter)
 
-app.use('/photos',pageRouter)
-// post
-// app.use('/photo',pageRouter)
+
 
 app.listen(PORT,()=>{
     console.log(`Server up is on : ${PORT}`)

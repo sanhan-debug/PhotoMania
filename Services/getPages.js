@@ -6,10 +6,6 @@ const getAboutPage = (req, res) => {
   res.render("about");
 };
 
-// const getPhotosPage = (req, res) => {
-//   res.render("photos");
-// };
-
 const getBlogPage = (req, res) => {
   res.render("blog");
 };
@@ -23,10 +19,10 @@ const getContactPage = (req, res) => {
 const getServicesPage = (req,res)=>{
   res.render("services")
 }
+
 export {
   getAboutPage,
   getIndexPage,
-  // getPhotosPage,
   getBlogPage,
   getProjectsPage,
   getContactPage,

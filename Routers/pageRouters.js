@@ -8,7 +8,7 @@ export const pageRouter = new Router()
 
 pageRouter.get('/',getIndexPage)
 pageRouter.get('/about',getAboutPage)
-pageRouter.get('/photos')
+pageRouter.get('/photos',getAllPhoto)
 pageRouter.get('/blog',getBlogPage)
 pageRouter.get('/projects',getProjectsPage)
 pageRouter.get('/contact',getContactPage)

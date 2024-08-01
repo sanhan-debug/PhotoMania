@@ -23,10 +23,10 @@
       </div>
       <div class="tz-gallery">
         <div class="row">
-          <% for(Photo of photos) { %>
+          <% for (photo of photos) { %>
           <div class="col-lg-4 col-md-6 ma_bottom30">
             <div class="lightbox">
-              <img src="<%= photo.src %>" alt="Bridge" />
+              <img src="<%= photo.url %>" alt="<%= photo.name %>">
               <div class="view_main">
                 <div class="pose">
                   <a class="read_more" href="images/g1.jpg"
