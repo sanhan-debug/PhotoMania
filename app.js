@@ -15,13 +15,16 @@ app.set("view engine",'ejs')
 // static files middleware
 app.use(express.static('public'))
 app.use(express.json())
+app.use(express.urlencoded({extended:true}))
 
 // get
 app.use('/',pageRouter)
 
 app.use('/about',pageRouter)
 
+app.use('/photos/',pageRouter)
 
+// app.use('/users/',pageRouter)
 
 app.listen(PORT,()=>{
     console.log(`Server up is on : ${PORT}`)
