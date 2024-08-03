@@ -22,10 +22,11 @@
                 </div>
               </div>
               <div class="col-md-8 offset-md-2">
-                <form id="request" class="main_form" method="post" action="users/login">
+      
+                <form id="request" class="main_form" method="POST" action="users/login" enctype="multipart/form-data" reqiured >
                   <div class="row">
                     <div class="col-md-12">
-                      <input class="form_control" placeholder="Username" type="text" name="username"> 
+                      <input class="form_control" placeholder="Username" type="text" name="username" required> 
                     </div>
                 
                     <div class="col-md-12">
@@ -34,7 +35,7 @@
                  
                     <div class="col-md-12">
                       <div class="group_form">
-                        <button class="send_btn">Login</button>
+                        <button class="send_btn" type="submit">Login</button>
                       </div>
                     </div>
                   </div>

@@ -2,6 +2,7 @@ import express from 'express';
 import  dotenv from 'dotenv';
 import { pageRouter } from './Routers/pageRouters.js';
 import mongoose from 'mongoose';
+import {  registerRoute } from './Routers/usersRoute.js';
 
 const app = express()
 dotenv.config()
@@ -24,7 +25,7 @@ app.use('/about',pageRouter)
 
 app.use('/photos/',pageRouter)
 
-// app.use('/users/',pageRouter)
+app.use('/users',registerRoute)
 
 app.listen(PORT,()=>{
     console.log(`Server up is on : ${PORT}`)

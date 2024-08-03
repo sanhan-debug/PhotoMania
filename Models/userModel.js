@@ -20,19 +20,16 @@ const userSchema = new Schema(
   },
   {
     timestamps: true,
+    versionKey:false
   }
 );
 
 userSchema.pre("save", function (next) {
-    const user = this;
-    if (!user.isModified("password")) return next(); // password dəyişməyibsə, növbəti middleware-ə keç
-    
-    console.log("USER PASSWORD : ", user.password);
+    const user = this;    
     bcrypt.hash(user.password, 10, (err, hash) => {
       if (err) return next(err); // əgər xəta varsa, next(err) çağır
     
       user.password = hash;
-      console.log("User Password : ", user.password);
       next();
     });
   });

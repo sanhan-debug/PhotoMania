@@ -14,7 +14,8 @@ import {
   getAllPhoto,
   getAPhoto,
 } from "../Services/photoServices.js";
-import { createUser } from "../Services/userService.js";
+
+
 
 export const pageRouter = new Router();
 // Get
@@ -26,9 +27,9 @@ pageRouter.get("/projects", getProjectsPage);
 pageRouter.get("/contact", getContactPage);
 pageRouter.get("/services", getServicesPage);
 pageRouter.get("/register", getRegisterPage);
-pageRouter.get('/login',getLoginPage)
+pageRouter.get("/login", getLoginPage);
 pageRouter.get("/:id", getAPhoto);
 
 // Post
 pageRouter.post("/", createPhoto);
-pageRouter.post('/register',createUser)
+
