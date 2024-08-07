@@ -37,5 +37,5 @@ export {
   getContactPage,
   getServicesPage,
   getRegisterPage,
-  getLoginPage
+  getLoginPage,
 };

@@ -1,7 +1,7 @@
 import express from 'express';
 import  dotenv from 'dotenv';
-import { pageRouter } from './Routers/pageRouters.js';
 import mongoose from 'mongoose';
+import { pageRouter } from './Routers/pageRouters.js';
 import {  registerRoute } from './Routers/usersRoute.js';
 
 const app = express()

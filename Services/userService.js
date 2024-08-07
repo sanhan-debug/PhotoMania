@@ -1,16 +1,14 @@
 import { User } from "../Models/userModel.js";
 import bcrypt from "bcrypt";
 
-export let user;
-// export let pass;
-
 export const createUser = async (req, res) => {
   try {
-    user = await User.create(req.body);
+    const { username, email, password } = req.body;
+    const user = new User({ username, email, password });
     res.status(201).json({
       message: "data has been added!",
       succeded: true,
-      photo,
+      user,
     });
   } catch (error) {
     res.status(500).json({
@@ -22,10 +20,10 @@ export const createUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   const { username, password } = req.body;
-  const user = await User.findOne({ username :username });
+  const user = await User.findOne({ username: username });
 
   if (user) {
-    let isCorrect = await bcrypt.compareSync(password, user.password);
+    const isCorrect = await bcrypt.compareSync(password, user.password);
     if (isCorrect) {
       res.send("gire bilersiz!");
     }

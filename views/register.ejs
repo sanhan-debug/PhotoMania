@@ -22,7 +22,7 @@
                 </div>
               </div>
               <div class="col-md-8 offset-md-2">
-                <form id="request" class="main_form" method="post" action="users/register">
+                <form id="request" class="main_form" method="POST" action="/users/register" enctype="multipart/form-data">
                   <div class="row">
                     <div class="col-md-12">
                       <input class="form_control" placeholder="Username" type="text" name="username"> 
@@ -33,10 +33,9 @@
                     <div class="col-md-12">
                       <input class="form_control" placeholder="Password" type="password" name="password">                          
                     </div>
-                 
                     <div class="col-md-12">
                       <div class="group_form">
-                        <button class="send_btn">Register</button>
+                        <button class="send_btn" type="submit">Register</button>
                       </div>
                     </div>
                   </div>
