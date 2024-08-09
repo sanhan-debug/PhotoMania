@@ -19,14 +19,4 @@ const userSchema = new Schema(
   }
 );
 
-userSchema.pre("save", function (next) {
-    const user = this;    
-    bcrypt.hash(user.password, 10, (err, hash) => {
-      if (err) return next(err); // əgər xəta varsa, next(err) çağır
-    
-      user.password = hash;
-      next();
-    });
-  });
-
 export const User = model("users", userSchema);
