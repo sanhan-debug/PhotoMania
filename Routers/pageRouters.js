@@ -19,7 +19,7 @@ import {
 
 export const pageRouter = new Router();
 // Get
-pageRouter.get("/", getIndexPage);
+pageRouter.get("/",getIndexPage);
 pageRouter.get("/about", getAboutPage);
 pageRouter.get("/photos", getAllPhoto);
 pageRouter.get("/blog", getBlogPage);
