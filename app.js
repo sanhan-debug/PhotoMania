@@ -4,6 +4,7 @@ import {connect} from "mongoose";
 import { pageRouter } from "./Routers/pageRouters.js";
 import { registerRoute } from "./Routers/usersRoute.js";
 import cookieParser from 'cookie-parser'
+import { chekUser } from "./Middlewares/authmiddleware.js";
 
 const app = express();
 dotenv.config();
@@ -21,6 +22,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
 
 // get
+app.get('*',chekUser)
+
+
 app.use("/", pageRouter);
 
 app.use("/about", pageRouter);

@@ -5,6 +5,7 @@ import {
   getContactPage,
   getIndexPage,
   getLoginPage,
+  getLogout,
   getProjectsPage,
   getRegisterPage,
   getServicesPage,
@@ -28,6 +29,7 @@ pageRouter.get("/contact", getContactPage);
 pageRouter.get("/services", getServicesPage);
 pageRouter.get("/register", getRegisterPage);
 pageRouter.get("/login", getLoginPage);
+pageRouter.get("/logout", getLogout);
 pageRouter.get("/:id", getAPhoto);
 
 // Post
