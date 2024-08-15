@@ -4,16 +4,10 @@ import jwt from "jsonwebtoken";
 
 export const createUser = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
-    const hassedPas = bcrypt.hashSync(password, 10, (err, next) => {
-      if (err) {
-        console.log(err);
-      } else {
-        next();
-      }
-    });
-    const user = await User.create({ username, email, password: hassedPas });
-    res.status(404).redirect("/login");
+    const {username,email,password} = req.body
+    const user = await User.create({username,email,password});
+    console.log(user)
+    res.status(201).redirect("/login");
   } catch (error) {
 
     let errors2 = {};
@@ -28,8 +22,8 @@ export const createUser = async (req, res) => {
 
     res.json({
       succeded:false,
-      error,
-    });
+      errors2,
+    }).status(404);
   }
 };
 
