@@ -13,6 +13,14 @@ const photoSchema = new Schema({
     },UploadAt:{
         type:Date,
         default:Date.now()
+    },
+    user:{
+        type: Schema.Types.ObjectId,
+        ref : 'User,'
+    },
+    url:{
+        type:String,
+        required:true
     }
 });
 

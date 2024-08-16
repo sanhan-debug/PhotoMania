@@ -9,8 +9,8 @@ const getAboutPage = (req, res) => {
 const getBlogPage = (req, res) => {
   res.render("blog", { link: "blog" });
 };
-const getProjectsPage = (req, res) => {
-  res.render("projects", { link: "projects" });
+const getUsersPage = (req, res) => {
+  res.render("users", { link: "users" });
 };
 
 const getContactPage = (req, res) => {
@@ -44,7 +44,7 @@ export {
   getAboutPage,
   getIndexPage,
   getBlogPage,
-  getProjectsPage,
+  getUsersPage,
   getContactPage,
   getServicesPage,
   getRegisterPage,

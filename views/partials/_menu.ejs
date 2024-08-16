@@ -18,10 +18,10 @@
                 >
               </li>
               <li><a class="<%= link === 'services' && 'active' %>" href="/services">Services</a></li>
-              <li><a class="<%= link === 'projects' && 'active' %>" href="/projects">Projects</a></li>
               <li><a class="<%= link === 'contact' && 'active' %>" href="/contact">Contact</a></li>
-
+              
               <% if(user) { %>
+                <li><a class="<%= link === 'users' && 'active' %>" href="/users">Users</a></li>
               <li><a class="<%= link === 'dashboard' && 'active' %>" href="/users/dashboard">Dashboard</a></li>
               <li><a  href="/logout">Logout</a></li>
              <% }else{ %>

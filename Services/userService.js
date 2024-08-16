@@ -1,15 +1,23 @@
 import { User } from "../Models/userModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { Photo } from "../Models/photoModel.js";
 
 export const createUser = async (req, res) => {
   try {
-    const {username,email,password} = req.body
-    const user = await User.create({username,email,password});
+    const { username, email, password } = req.body;
+    const hassedPas = bcrypt.hashSync(password, 10, (err, next) => {
+      if (err) {
+        console.log(err);
+      } else {
+        next()
+      }
+    });
+
+    const user = await User.create({ username, email, password: hassedPas });
     console.log(user)
     res.status(201).redirect("/login");
   } catch (error) {
-
     let errors2 = {};
 
     if (error.name === "ValidationError") {
@@ -20,10 +28,12 @@ export const createUser = async (req, res) => {
 
     console.log(errors2);
 
-    res.json({
-      succeded:false,
-      errors2,
-    }).status(404);
+    res
+      .json({
+        succeded: false,
+        errors2,
+      })
+      .status(404);
   }
 };
 
@@ -51,12 +61,37 @@ export const loginUser = async (req, res) => {
   }
 };
 
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).render("users", { users, link: "users" });
+  } catch (error) {
+    res.status(500).json({
+      succeded: false,
+      error,
+    });
+  }
+};
+
+export const getAUser = async (req, res) => {
+  try {
+    const user = await User.findById({ _id: req.params.id });
+    res.status(200).render("photo", { user, link: "users" });
+  } catch (error) {
+    res.status(500).json({
+      succeded: false,
+      error,
+    });
+  }
+};
+
 const createToken = (userId) => {
   return jwt.sign({ userId }, process.env.JWT_SECRET, {
     expiresIn: "1d",
   });
 };
 
-export const getDashboardPage = (req, res) => {
-  res.render("dashboard", { link: "dashboard" });
+export const getDashboardPage =async (req, res) => {
+  const photos = await Photo.find({user:res.locals.user._id})
+  res.render("dashboard", { link: "dashboard" ,photos});
 };

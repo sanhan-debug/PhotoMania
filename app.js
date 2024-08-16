@@ -1,13 +1,24 @@
 import express from "express";
 import dotenv from "dotenv";
-import {connect} from "mongoose";
+import { connect } from "mongoose";
 import { pageRouter } from "./Routers/pageRouters.js";
 import { registerRoute } from "./Routers/usersRoute.js";
-import cookieParser from 'cookie-parser'
+import cookieParser from "cookie-parser";
 import { chekUser } from "./Middlewares/authmiddleware.js";
+import fileUpload from "express-fileupload";
+import { v2 as clodinary} from 'cloudinary'
 
 const app = express();
 dotenv.config();
+clodinary.config({
+  cloud_name:process.env.CLOUD_NAME,
+  api_key:process.env.CLOUD_API_KEY,
+  api_secret:process.env.CLOUD_API_SECRET,
+})
+
+
+
+
 const PORT = process.env.PORT;
 const URI = process.env.URI;
 // Connect to the DB
@@ -19,11 +30,11 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser())
+app.use(cookieParser());
+app.use(fileUpload({useTempFiles:true}))
 
 // get
-app.get('*',chekUser)
-
+app.use("*", chekUser);
 
 app.use("/", pageRouter);
 

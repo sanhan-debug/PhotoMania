@@ -1,14 +1,27 @@
 import { Photo } from "../Models/photoModel.js";
+import { v2 as clodinary } from "cloudinary";
+import fs from 'fs'
 
-export let photo;
 const createPhoto = async (req, res) => {
+  const result = await clodinary.uploader.upload(req.files.image.tempFilePath, {
+    use_filename: true,
+    folder: "lenlisght",
+  });
+
+  console.log(result);
+
   try {
-    photo = await Photo.create(req.body);
-    res.status(201).json({
-      message: "data has been added!",
-      succeded: true,
-      photo,
+    await Photo.create({
+      name: req.body.name,
+      description: req.body.description,
+      user: res.locals.user._id,
+      url:result.secure_url,
     });
+
+    fs.unlinkSync(req.files.image.tempFilePath)
+
+    res.status(201).redirect("/users/dashboard");
+    
   } catch (error) {
     res.status(500).json({
       succeded: false,
@@ -29,10 +42,9 @@ const getAllPhoto = async (req, res) => {
   }
 };
 
-
 const getAPhoto = async (req, res) => {
   try {
-    const photo = await Photo.findById({_id : req.params.id});
+    const photo = await Photo.findById({ _id: req.params.id });
     res.status(200).render("photo", { photo, link: "photos" });
   } catch (error) {
     res.status(500).json({
@@ -41,6 +53,5 @@ const getAPhoto = async (req, res) => {
     });
   }
 };
-
 
 export { createPhoto, getAllPhoto, getAPhoto };

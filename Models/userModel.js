@@ -27,12 +27,12 @@ const userSchema = new Schema(
   }
 );
 
-userSchema.pre('save',  (next)=> {
-  const user = this;
-  bcrypt.hash(user.password, 10, (err, hash) => {
-    user.password = hash;
-    next();
-  });
-});
+// userSchema.pre('save',  (next)=> {
+//   const user = this;
+//   bcrypt.hash(user.password, 10, (err, hash) => {
+//     user.password = hash;
+//     next();
+//   });
+// });
 
 export const User = model("users", userSchema);

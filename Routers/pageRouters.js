@@ -6,7 +6,7 @@ import {
   getIndexPage,
   getLoginPage,
   getLogout,
-  getProjectsPage,
+  getUsersPage,
   getRegisterPage,
   getServicesPage,
 } from "../Services/getPages.js";
@@ -24,7 +24,7 @@ pageRouter.get("/",getIndexPage);
 pageRouter.get("/about", getAboutPage);
 pageRouter.get("/photos", getAllPhoto);
 pageRouter.get("/blog", getBlogPage);
-pageRouter.get("/projects", getProjectsPage);
+pageRouter.get("/users", getUsersPage);
 pageRouter.get("/contact", getContactPage);
 pageRouter.get("/services", getServicesPage);
 pageRouter.get("/register", getRegisterPage);
