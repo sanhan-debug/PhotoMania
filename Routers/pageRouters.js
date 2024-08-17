@@ -1,12 +1,10 @@
 import { Router } from "express";
 import {
   getAboutPage,
-  getBlogPage,
   getContactPage,
   getIndexPage,
   getLoginPage,
   getLogout,
-  getUsersPage,
   getRegisterPage,
   getServicesPage,
 } from "../Services/getPages.js";
@@ -15,6 +13,7 @@ import {
   getAllPhoto,
   getAPhoto,
 } from "../Services/photoServices.js";
+import { getAllUsers } from "../Services/userService.js";
 
 
 
@@ -23,8 +22,7 @@ export const pageRouter = new Router();
 pageRouter.get("/",getIndexPage);
 pageRouter.get("/about", getAboutPage);
 pageRouter.get("/photos", getAllPhoto);
-pageRouter.get("/blog", getBlogPage);
-pageRouter.get("/users", getUsersPage);
+pageRouter.get("/users",getAllUsers );
 pageRouter.get("/contact", getContactPage);
 pageRouter.get("/services", getServicesPage);
 pageRouter.get("/register", getRegisterPage);

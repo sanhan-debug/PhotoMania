@@ -6,13 +6,6 @@ const getAboutPage = (req, res) => {
   res.render("about", { link: "about" });
 };
 
-const getBlogPage = (req, res) => {
-  res.render("blog", { link: "blog" });
-};
-const getUsersPage = (req, res) => {
-  res.render("users", { link: "users" });
-};
-
 const getContactPage = (req, res) => {
   res.render("contact", { link: "contact" });
 };
@@ -43,8 +36,8 @@ const getLogout = (req, res) => {
 export {
   getAboutPage,
   getIndexPage,
-  getBlogPage,
-  getUsersPage,
+  // getBlogPage,
+  // getUsersPage,
   getContactPage,
   getServicesPage,
   getRegisterPage,

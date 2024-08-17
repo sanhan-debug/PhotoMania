@@ -58,7 +58,7 @@
         <div class="col-md-12">
           <div class="titlepage text_align_center">
           
-            <h2>Our gallery</h2>
+            <h2>Your gallery</h2>
           </div>
         </div>
       </div>
@@ -70,10 +70,10 @@
                   <img src="<%= photo.url %>" href="/images/g3.jpg" alt="<%= photo.name %>">
                   <div class="view_main">
                      <div class="pose">
-                        <a class="read_more" href="/photos/<%= photo._id %>" href="/images/g3.jpg"><img src="/images/ga.png"
-                              alt="#" /></a>
+                        <a class="read_more" href="/photos/<%= photo._id %>" ><img src="/images/ga.png" alt="#" />  <%= user.username %>
+                              </a>
                         <h3 style="padding-top:10px; padding-bottom:10px">
-                           <%= photo.name %>
+                         
                         </h3>
                         <p style="padding-top:10px;">
                            <%= photo.description.substring(0, 80)+ "..." %>
@@ -85,9 +85,7 @@
 
             <% } %>
 
-          <div class="col-md-12">
-            <a class="plus_btn" href="/photos">+</a>
-          </div>
+       
         </div>
       </div>
     </div>

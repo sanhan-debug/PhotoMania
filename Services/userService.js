@@ -10,12 +10,12 @@ export const createUser = async (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        next()
+        next();
       }
     });
 
     const user = await User.create({ username, email, password: hassedPas });
-    console.log(user)
+    console.log(user);
     res.status(201).redirect("/login");
   } catch (error) {
     let errors2 = {};
@@ -63,7 +63,7 @@ export const loginUser = async (req, res) => {
 
 export const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await User.find({ _id: { $ne: res.locals._id } });
     res.status(200).render("users", { users, link: "users" });
   } catch (error) {
     res.status(500).json({
@@ -76,7 +76,8 @@ export const getAllUsers = async (req, res) => {
 export const getAUser = async (req, res) => {
   try {
     const user = await User.findById({ _id: req.params.id });
-    res.status(200).render("photo", { user, link: "users" });
+    const photos = await Photo.find({user: res.locals._id})
+    res.status(200).render("user", { user,photos, link: "users" });
   } catch (error) {
     res.status(500).json({
       succeded: false,
@@ -91,7 +92,7 @@ const createToken = (userId) => {
   });
 };
 
-export const getDashboardPage =async (req, res) => {
-  const photos = await Photo.find({user:res.locals.user._id})
-  res.render("dashboard", { link: "dashboard" ,photos});
+export const getDashboardPage = async (req, res) => {
+  const photos = await Photo.find({ user: res.locals.user._id });
+  res.render("dashboard", { link: "dashboard", photos });
 };

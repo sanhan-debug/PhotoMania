@@ -9,6 +9,6 @@ export const registerRoute = new Router()
 registerRoute.post('/login',loginUser)
 registerRoute.post('/register',createUser)
 registerRoute.get('/dashboard',authenticateToken,getDashboardPage)
-registerRoute.get('/',getAllUsers)
-registerRoute.get('/:id',getAUser)
+registerRoute.get('/',authenticateToken,getAllUsers)
+registerRoute.get('/:id',authenticateToken,getAUser)
 
