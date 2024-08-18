@@ -6,7 +6,8 @@ import { registerRoute } from "./Routers/usersRoute.js";
 import cookieParser from "cookie-parser";
 import { chekUser } from "./Middlewares/authmiddleware.js";
 import fileUpload from "express-fileupload";
-import { v2 as clodinary} from 'cloudinary'
+import { v2 as clodinary} from 'cloudinary';
+import methodOverride from 'method-override'
 
 const app = express();
 dotenv.config();
@@ -28,10 +29,12 @@ app.set("view engine", "ejs");
 
 // static files middleware
 app.use(express.static("public"));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(fileUpload({useTempFiles:true}))
+app.use(methodOverride('_method', {methods:["POST","GET"]}))
 
 // get
 app.use("*", chekUser);

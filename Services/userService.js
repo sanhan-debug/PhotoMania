@@ -76,8 +76,69 @@ export const getAllUsers = async (req, res) => {
 export const getAUser = async (req, res) => {
   try {
     const user = await User.findById({ _id: req.params.id });
-    const photos = await Photo.find({user: res.locals._id})
-    res.status(200).render("user", { user,photos, link: "users" });
+
+    const inFollowers = user.followers.some((follower) => {
+      return follower.equals(res.locals.user._id);
+    });
+
+    const photos = await Photo.find({ user: user._id });
+    res
+      .status(200)
+      .render("user", { user, photos, inFollowers, link: "users" });
+  } catch (error) {
+    res.status(500).json({
+      succeded: false,
+      error,
+    });
+  }
+};
+
+export const follow = async (req, res) => {
+  try {
+    let user = await User.findByIdAndUpdate(
+      { _id: req.params.id },
+      {
+        $push: { followers: res.locals.user._id },
+      },
+      { new: true }
+    );
+
+    user = await User.findByIdAndUpdate(
+      { _id: res.locals.user._id },
+      {
+        $push: { followings: req.params.id },
+      },
+      { new: true }
+    );
+
+    res.status(200).redirect(`/users/${req.params.id}`);
+  } catch (error) {
+    res.status(500).json({
+      succeded: false,
+      error,
+    });
+  }
+};
+
+export const unfollow = async (req, res) => {
+  try {
+    let user = await User.findByIdAndUpdate(
+      { _id: req.params.id },
+      {
+        $pull: { followers: res.locals.user._id },
+      },
+      { new: true }
+    );
+
+    user = await User.findByIdAndUpdate(
+      { _id: res.locals.user._id },
+      {
+        $pull: { followings: req.params.id },
+      },
+      { new: true }
+    );
+
+    res.status(200).redirect(`/users/${req.params.id}`);
   } catch (error) {
     res.status(500).json({
       succeded: false,
@@ -94,5 +155,6 @@ const createToken = (userId) => {
 
 export const getDashboardPage = async (req, res) => {
   const photos = await Photo.find({ user: res.locals.user._id });
-  res.render("dashboard", { link: "dashboard", photos });
+  const user = await User.findById({ _id: res.locals.user._id }).populate(["followers","followings"])
+  res.render("dashboard", { link: "dashboard", photos, user  });
 };

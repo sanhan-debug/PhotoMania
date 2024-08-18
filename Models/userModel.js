@@ -18,9 +18,22 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: [true, "Password area is required"],
-      minlength: [4, 'At least 4 characters'],
+      minlength: [4, "At least 4 characters"],
     },
+    followers: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    followings: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
+
   {
     timestamps: true,
     versionKey: false,
@@ -35,4 +48,4 @@ const userSchema = new Schema(
 //   });
 // });
 
-export const User = model("users", userSchema);
+export const User = model("User", userSchema);
