@@ -10,8 +10,10 @@ import {
 } from "../Services/getPages.js";
 import {
   createPhoto,
+  deletePhoto,
   getAllPhoto,
   getAPhoto,
+  uptadePhoto,
 } from "../Services/photoServices.js";
 import { getAllUsers } from "../Services/userService.js";
 
@@ -33,3 +35,8 @@ pageRouter.get("/:id", getAPhoto);
 // Post
 pageRouter.post("/", createPhoto);
 
+// delete
+pageRouter.delete('/:id',deletePhoto)
+
+// put
+pageRouter.put('/:id',uptadePhoto)
