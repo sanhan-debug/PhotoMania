@@ -9,7 +9,7 @@
     "routes": [
       {
         "src": "/users/(.*)",
-        "dest": "/api/users/$1"
+        "dest": "/us"
       },
       {
         "src": "/photos/(.*)",

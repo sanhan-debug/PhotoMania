@@ -7,6 +7,7 @@ import {
   getLogout,
   getRegisterPage,
   getServicesPage,
+  sendMail,
 } from "../Services/getPages.js";
 import {
   createPhoto,
@@ -34,6 +35,7 @@ pageRouter.get("/:id", getAPhoto);
 
 // Post
 pageRouter.post("/", createPhoto);
+pageRouter.post('/contact',sendMail)
 
 // delete
 pageRouter.delete('/:id',deletePhoto)
