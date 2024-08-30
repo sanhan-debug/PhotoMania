@@ -15,7 +15,7 @@ export const createUser = async (req, res) => {
     });
 
     const user = await User.create({ username, email, password: hassedPas });
-    console.log(user);
+    // console.log(user);
     res.status(201).redirect("/login");
   } catch (error) {
     let errors2 = {};
