@@ -10,6 +10,7 @@ export const createUser = async (req, res) => {
       if (err) {
         console.log(err);
       } else {
+        alert("Qeydiyyat ughurla tamamlandi! ")
         next();
       }
     });
@@ -26,7 +27,7 @@ export const createUser = async (req, res) => {
       });
     }
 
-    console.log(errors2);
+    console.log(res.json(errors2));
 
     res
       .json({
@@ -155,6 +156,6 @@ const createToken = (userId) => {
 
 export const getDashboardPage = async (req, res) => {
   const photos = await Photo.find({ user: res.locals.user._id });
-  const user = await User.findById({ _id: res.locals.user._id }).populate(["followers","followings"])
-  res.render("dashboard", { link: "dashboard", photos, user  });
+  const user = await User.findById({ _id: res.locals.user._id }).populate(["followers", "followings"])
+  res.render("dashboard", { link: "dashboard", photos, user });
 };
