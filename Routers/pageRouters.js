@@ -23,7 +23,11 @@ import { getAllUsers } from "../Services/userService.js";
 export const pageRouter = new Router();
 // Get
 pageRouter.get("/",getIndexPage);
-pageRouter.get("/about", getAboutPage);
+
+pageRouter.get("/about",(req, res) => {
+  res.render("about", { link: "about" });
+})
+
 pageRouter.get("/photos", getAllPhoto);
 pageRouter.get("/users",getAllUsers );
 pageRouter.get("/contact", getContactPage);
