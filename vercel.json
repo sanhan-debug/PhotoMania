@@ -8,7 +8,7 @@
     ],
     "routes": [
         {
-            "src": "/hello",
+            "src": "/*",
             "dest": "/app.js"
         },
         {
@@ -18,6 +18,10 @@
         {
             "src": "/photos",
             "dest": "/Routers/pageRouters.js"
+        },
+        {
+            "src": "/users/login",
+            "dest": "/Routers/usersRoute.js"
         }
     ]
 }
