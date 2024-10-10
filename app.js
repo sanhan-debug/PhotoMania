@@ -37,6 +37,10 @@ app.use(fileUpload({useTempFiles:true}))
 app.use(methodOverride('_method', {methods:["POST","GET"]}))
 
 // get
+app.get('/hello',(req,res)=>{
+  res.send("salam a")
+})
+
 app.use("*", chekUser);
 
 app.use("/", pageRouter);

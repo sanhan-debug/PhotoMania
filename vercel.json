@@ -1,11 +1,23 @@
 {
     "version": 2,
     "builds": [
-      { "src": "app.js", "use": "@vercel/node" }
+        {
+            "src": "app.js",
+            "use": "@vercel/node"
+        }
     ],
     "routes": [
-      { "src": "/about", "dest": "/Routers/pageRouters.js" },
-      { "src": "/photos", "dest": "/Routers/pageRouters.js" }
+        {
+            "src": "/hello",
+            "dest": "/app.js"
+        },
+        {
+            "src": "/about",
+            "dest": "/Routers/pageRouters.js"
+        },
+        {
+            "src": "/photos",
+            "dest": "/Routers/pageRouters.js"
+        }
     ]
-  }
-  
+}
