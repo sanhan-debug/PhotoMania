@@ -13,7 +13,7 @@
         },
         {
             "src": "/about",
-            "dest": ""
+            "dest": "/Routers/pageRouters.js"
         },
         {
             "src": "/photos",
