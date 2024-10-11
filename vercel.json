@@ -1,27 +1,12 @@
 {
     "version": 2,
     "builds": [
-        {
-            "src": "app.js",
-            "use": "@vercel/node"
-        }
+      { "src": "app.js", "use": "@vercel/node" }
     ],
     "routes": [
-        {
-            "src": "/*",
-            "dest": "/app.js"
-        },
-        {
-            "src": "/about",
-            "dest": "/Routers/pageRouters.js"
-        },
-        {
-            "src": "/photos",
-            "dest": "/Routers/pageRouters.js"
-        },
-        {
-            "src": "/users/login",
-            "dest": "/Routers/usersRoute.js"
-        }
+      { "src": "/about", "dest": "/app.js" },
+      { "src": "/photos", "dest": "/app.js" },
+      { "src": "/users", "dest": "/app.js" }
     ]
-}
+  }
+  
