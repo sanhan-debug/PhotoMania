@@ -17,6 +17,7 @@ import {
   uptadePhoto,
 } from "../Services/photoServices.js";
 import { getAllUsers } from "../Services/userService.js";
+import { Photo } from "../Models/photoModel.js";
 
 
 
@@ -28,7 +29,19 @@ pageRouter.get("/about",(req, res) => {
   res.render("about", { link: "about" });
 })
 
-pageRouter.get("/photos", getAllPhoto);
+pageRouter.get("/photos", async (req, res) => {
+  try {
+    const photos = res.locals.user
+      ? await Photo.find({ user: { $ne: res.locals.user._id } })
+      : await Photo.find();
+    res.status(200).render("photos", { photos, link: "photos" });
+  } catch (error) {
+    res.status(500).json({
+      succeded: false,
+      error,
+    });
+  }
+})
 pageRouter.get("/users",getAllUsers );
 pageRouter.get("/contact", getContactPage);
 pageRouter.get("/services", getServicesPage);
