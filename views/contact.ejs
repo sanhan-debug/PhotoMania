@@ -1,87 +1,90 @@
 <%- include("partials/_header") %>
 
-   <!-- body -->
-   <body class="main-layout inner_page">
-      <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="#"/></div>
-      </div>
-      <!-- end loader -->
-         <!-- header -->
-      <%- include("partials/_menu") %>
-         
-         <!-- end header inner -->
+  <!-- body -->
+
+  <body class="main-layout inner_page">
+    <!-- loader  -->
+    <div class="loader_bg">
+      <div class="loader"><img src="images/loading.gif" alt="#" /></div>
+    </div>
+    <!-- end loader -->
+    <!-- header -->
+    <%- include("partials/_menu") %>
+
+      <!-- end header inner -->
       <!-- contact -->
-        <div class="contact">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12 ">
-                <div class="titlepage text_align_center">
-               
-                  <h2>Requste A Call Back</h2>
-                </div>
+      <div class="contact">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 ">
+              <div class="titlepage text_align_center">
+
+                <h2>Requste A Call Back</h2>
               </div>
-              <div class="col-md-8 offset-md-2">
-                <form id="request" class="main_form" action="/contact" method="post">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <input class="form_control" placeholder="Your name" type="type" name="name"> 
-                    </div>
-                    <div class="col-md-12">
-                      <input class="form_control" placeholder="Email" type="email" name="email">                          
-                    </div>
-                    <div class="col-md-12">
-                      <input class="form_cont" placeholder="Message" type="type" name="message">
-                    </div>
-                    <div class="col-md-12">
-                      <div class="group_form">
-                        <button class="send_btn">Send</button>
-                      </div>
+            </div>
+            <div class="col-md-8 offset-md-2">
+              <form id="request" class="main_form" action="/contact" method="post">
+                <div class="row">
+                  <div class="col-md-12">
+                    <input class="form_control" placeholder="Your name" type="type" name="name">
+                  </div>
+                  <div class="col-md-12">
+                    <input class="form_control" placeholder="Email" type="email" name="email">
+                  </div>
+                  <div class="col-md-12">
+                    <input class="form_cont" placeholder="Message" type="type" name="message">
+                  </div>
+                  <div class="col-md-12">
+                    <div class="group_form">
+                      <button class="send_btn">Send</button>
                     </div>
                   </div>
-                </form>
-              </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-        <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-        <script type="text/javascript">
-            (function(){
-                emailjs.init("u3VHn5z07GvSDqk5w"); // EmailJS user ID-ni bura daxil et
-            })();
-        
-            document.getElementById("request").addEventListener("submit", function(event) {
-                event.preventDefault(); // Formun default submit hadisəsinin qarşısını alırıq
-        
-                // Form məlumatlarını toplamaq
-                const name = document.querySelector("input[name='name']").value;
-                const email = document.querySelector("input[name='email']").value;
-                const message = document.querySelector("input[name='message']").value;
-        
-                // Məlumatları bir obyektə toplayırıq
-                const formData = {
-                    name: name,
-                    email: email,
-                    message: message
-                };
-        
-                // E-poçt göndərmə funksiyasını çağırırıq
-                sendEmail(formData);
-            });
-        
-            function sendEmail(response) {
-                emailjs.send("service_0mug666", "template_r889mau", response)
-                    .then(function(response) {
-                        console.log("E-poçt göndərildi!", response);
-                        alert("e-poct gonderildi!")
-                    }, function(error) {
-                        console.log("E-poçt göndərilərkən bir səhv baş verdi...", error);
-                    });
+      </div>
+      <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+      <script type="text/javascript">
+        (function () {
+          emailjs.init("u3VHn5z07GvSDqk5w"); // EmailJS user ID-ni bura daxil et
+        })();
 
-            }
-        </script>
-        
-        
+        document.getElementById("request").addEventListener("submit", function (event) {
+          event.preventDefault(); // Formun default submit hadisəsinin qarşısını alırıq
+
+          // Form məlumatlarını toplamaq
+          const name = document.querySelector("input[name='name']").value;
+          const email = document.querySelector("input[name='email']").value;
+          const message = document.querySelector("input[name='message']").value;
+
+          // Məlumatları bir obyektə toplayırıq
+          const formData = {
+            name: name,
+            email: email,
+            message: message,
+            to_email: email // Formadakı email inputunu 'to_email' kimi göndəririk
+          };
+
+          // E-poçt göndərmə funksiyasını çağırırıq
+          sendEmail(formData);
+        });
+
+        function sendEmail(formData) {
+          emailjs.send("service_0mug666", "template_r889mau", formData)
+            .then(function (response) {
+              console.log("E-poçt göndərildi!", response);
+              alert("E-poçt göndərildi!");
+            }, function (error) {
+              console.log("E-poçt göndərilərkən bir səhv baş verdi...", error);
+            });
+        }
+
+
+
+      </script>
+
+
       <!-- end contact -->
       <%- include("partials/_footer") %>
-      
