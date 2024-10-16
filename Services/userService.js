@@ -17,7 +17,7 @@ export const createUser = async (req, res) => {
 
     const user = await User.create({ username, email, password: hassedPas });
     // console.log(user);
-    res.status(201).redirect("/login");
+   return res.status(201).redirect("/login");
   } catch (error) {
     let errors2 = {};
 
@@ -29,7 +29,7 @@ export const createUser = async (req, res) => {
 
     console.log(res.json(errors2));
 
-    res
+   return res
       .json({
         succeded: false,
         errors2,
