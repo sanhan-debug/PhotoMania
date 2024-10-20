@@ -1,18 +1,14 @@
 import { Router } from "express";
 import {
-  getAboutPage,
   getContactPage,
   getIndexPage,
   getLoginPage,
   getLogout,
   getRegisterPage,
-  getServicesPage,
-  sendMail,
 } from "../Services/getPages.js";
 import {
   createPhoto,
   deletePhoto,
-  getAllPhoto,
   getAPhoto,
   uptadePhoto,
 } from "../Services/photoServices.js";
@@ -44,7 +40,6 @@ pageRouter.get("/photos", async (req, res) => {
 })
 pageRouter.get("/users",getAllUsers );
 pageRouter.get("/contact", getContactPage);
-pageRouter.get("/services", getServicesPage);
 pageRouter.get("/register", getRegisterPage);
 pageRouter.get("/login", getLoginPage);
 pageRouter.get("/logout", getLogout);
@@ -52,7 +47,6 @@ pageRouter.get("/:id", getAPhoto);
 
 // Post
 pageRouter.post("/", createPhoto);
-pageRouter.post('/contact',sendMail)
 
 // delete
 pageRouter.delete('/:id',deletePhoto)
